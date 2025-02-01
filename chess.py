@@ -7,6 +7,24 @@
 import matplotlib.pyplot as plt
 import numpy as np
 
-x = np.array([[1,0,1,0,1,0,1,0],[0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0],[0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0],[0,1,0,1,0,1,0,1],[1,0,1,0,1,0,1,0], [0,1,0,1,0,1,0,1]])
-plt.imshow(x, cmap = 'hot')
+#создаём доску
+x = np.array([[10,0,10,0,10,0,10,0],[0,10,0,10,0,10,0,10],[10,0,10,0,10,0,10,0],[0,10,0,10,0,10,0,10],[10,0,10,0,10,0,10,0],[0,10,0,10,0,10,0,10],[10,0,10,0,10,0,10,0], [0,10,0,10,0,10,0,10]])
+col_labels = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H']
+row_labels = range(1, 9)
+plt.xticks(range(8), col_labels)
+plt.yticks(range(8), row_labels)
+
+#вводим координаты ферзя
+X_ferz = int(input())
+Y_ferz = int(input())
+
+#считаем где он и куда может атаковать
+for i in range(8):
+    x[Y_ferz][i] = 6
+    x[i][X_ferz] = 6
+    x[abs(Y_ferz-i)][abs(X_ferz-i)] = 6
+x[Y_ferz][X_ferz] = 3
+
+
+plt.imshow(x, cmap = 'hot', interpolation='nearest')
 plt.show()
