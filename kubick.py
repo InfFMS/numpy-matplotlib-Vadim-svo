@@ -7,13 +7,14 @@
 # Визуализируйте результаты в виде гистограммы.
 
 import random as ran
-import matplotlib as plt
+import matplotlib.pyplot as plt
 import numpy as np
+import itertools
 
 #делаем список
 x = []
 count = [0, 0, 0, 0, 0, 0]
-for i in range (10):
+for i in range (1000):
     x.append(ran.randint(1, 6))
 
 #сортируем списко
@@ -23,7 +24,7 @@ y.sort()
 #считаем значения
 c = 0
 b = 1
-for i in range(10):
+for i in range(1000):
     if y[i] == b:
         count[c] += 1
     else:
@@ -36,22 +37,21 @@ ver = []
 for i in range(6):
     ver.append(count[i]/1000)
 
-#считаем макс серию
-max1 = x[1]
-max2 = 1
-p=[]
-for i in range(10):
-    if x[i]==max1:
-        max2 += 1
-        p.append(max2)
-    else:
-        max2=1
-
-
 
 print(x)
 print(y)
 print(count)
 print(ver)
-print(max(p))
+print(max(sum(1 for x in v) for _,v in itertools.groupby(x)))
 
+#
+
+plt.hist(y, color = 'pink', bins = int(180/5))
+
+
+# Add labels
+plt.title('броски кубика')
+plt.xlabel('значения')
+plt.ylabel('количество')
+
+plt.show()
