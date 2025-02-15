@@ -8,3 +8,15 @@
 # Линейный график температуры по дням.
 # Гистограмму распределения температуры.
 # Подсветку "холодных" и "жарких" дней на линейном графике.
+import matplotlib.pyplot as plt
+import numpy as np
+import itertools
+
+
+a = np.random.randint(-10, 35, 365)
+
+sred = np.sum(a) // 365
+
+print(a)
+print(sred)
+print(max(sum(1 for a in v) for _,v in itertools.groupby(a)))
